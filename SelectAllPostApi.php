@@ -2,11 +2,8 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: http://localhost:3000");
+include 'resources/properties.php';
 
-$servername = "18.222.132.144:3306";
-$username = "cafe";
-$password = "test1234";
-$dbname = "cafe";
 $response=array();
 
 // Create connection
