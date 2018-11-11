@@ -16,7 +16,7 @@ $data = json_decode(file_get_contents("php://input"),true);
 $id=$data["id"];
 
 $query = "DELETE FROM post
-    WHERE id='".$id."'
+    WHERE id='".$id."';
 ";
  
 if(mysqli_query($conn, $query))

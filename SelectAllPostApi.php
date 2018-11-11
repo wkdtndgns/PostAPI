@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT id, title, writer, writtenDate, views FROM post";
+$sql = "SELECT id, title, writer, writtenDate, views FROM post ORDER BY id DESC;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

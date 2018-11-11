@@ -14,11 +14,10 @@ if ($conn->connect_error) {
 } 
 
 $data = json_decode(file_get_contents("php://input"),true);
-$title=$data["title"];
-$writer=$data["writer"];
+$postId=$data["id"];
 $context=$data["context"];
 
-$query="INSERT INTO post SET writer='".$writer."', title='".$title."', context='".$context."';";
+$query="INSERT INTO review SET postId='".$postId."', context='".$context."';";
  
  if(mysqli_query($conn, $query))
  {

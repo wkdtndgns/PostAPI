@@ -17,7 +17,7 @@ $id=$data["id"];
 
 
 $sql = "SELECT id, title, writer, writtenDate, views, context FROM post
-    WHERE id='".$id."'
+    WHERE id='".$id."';
 ";
 
 $result = $conn->query($sql);
