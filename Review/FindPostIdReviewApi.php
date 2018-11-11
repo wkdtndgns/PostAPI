@@ -2,7 +2,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: http://localhost:3000");
-include 'resources/properties.php';
+include '../resources/properties.php';
 
 $response=array();
 
@@ -12,12 +12,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
+$data = json_decode(file_get_contents("php://input"),true);
+$id=$data["id"];
 
-$sql = "SELECT p.id, title, writer, writtenDate, views, count(r.id) as reviewCount FROM post p
-         LEFT JOIN review r 
-         ON p.id=r.postId 
-         GROUP BY p.id  
-        ORDER BY id DESC;";
+$sql = "SELECT id,context FROM review WHERE postId='".$id."' ORDER BY id DESC;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -26,7 +24,7 @@ if ($result->num_rows > 0) {
         $response[]=$row;
     }
 } else {
-    echo "0 results";
+    echo "";
 }
 
 echo json_encode($response);

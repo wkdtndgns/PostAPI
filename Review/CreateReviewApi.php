@@ -2,7 +2,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: http://localhost:3000");
-include 'resources/properties.php';
+include '../resources/properties.php';
 
 $response=array();
 

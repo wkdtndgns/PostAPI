@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
         $views = $row["views"];
     }
 } else {
-    echo "0 results";
+    echo "";
 }
 
 $views+=1;
