@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         $response[]=$row;
     }
 } else {
-    echo "0 results";
+    echo "";
 }
 
 echo json_encode($response);
