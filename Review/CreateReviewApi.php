@@ -14,8 +14,12 @@ if ($conn->connect_error) {
 } 
 
 $data = json_decode(file_get_contents("php://input"),true);
+
 $postId=$data["id"];
 $context=$data["context"];
+
+$postId =preg_replace('/[^0-9]/', '', $postId);
+$context =mysqli_real_escape_string($conn,$context);
 
 $query="INSERT INTO review SET postId='".$postId."', context='".$context."';";
  

@@ -2,7 +2,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: http://localhost:3000");
-include 'resources/properties.php';
+include '../resources/properties.php';
 
 $response=array();
 
@@ -14,33 +14,30 @@ if ($conn->connect_error) {
 } 
 $data = json_decode(file_get_contents("php://input"),true);
 $id=$data["id"];
-
-
-$sql = "SELECT id, title, writer, writtenDate, views, context FROM post
+$id =preg_replace('/[^0-9]/', '', $id);
+$query = "DELETE FROM post
     WHERE id='".$id."';
 ";
 
-$result = $conn->query($sql);
-$views=0;
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $response[]=$row;
-        $views = $row["views"];
+    if(mysqli_query($conn, $query))
+    {
+        $response=array(
+            'status' => 200,
+            'status_message' =>'Delete Successfully.',
+        );
     }
-} else {
-    echo "";
-}
+    else
+    {
+        $response=array(
+            'status' => 500,
+            'status_message' =>'Delete Failed.',
+        );
+    }
 
-$views+=1;
-
-$sql = "UPDATE post SET views= '".$views."'
-    WHERE id='".$id."'
-";
-$conn->query($sql);
+    echo json_encode($response);
 
 
-echo json_encode($response);
+
 $conn->close();
 ?> 

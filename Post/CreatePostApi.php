@@ -2,7 +2,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: http://localhost:3000");
-include 'resources/properties.php';
+include '../resources/properties.php';
 
 $response=array();
 
@@ -18,8 +18,12 @@ $title=$data["title"];
 $writer=$data["writer"];
 $context=$data["context"];
 
+$title= mysqli_real_escape_string($conn,$title);
+$writer =mysqli_real_escape_string($conn,$writer);
+$context =mysqli_real_escape_string($conn,$context);
+
 $query="INSERT INTO post SET writer='".$writer."', title='".$title."', context='".$context."';";
- 
+
  if(mysqli_query($conn, $query))
  {
      $response=array(
@@ -36,6 +40,8 @@ $query="INSERT INTO post SET writer='".$writer."', title='".$title."', context='
  }
 
  echo json_encode($response);
- 
+
+
+
 $conn->close();
 ?> 

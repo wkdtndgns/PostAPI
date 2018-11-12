@@ -14,6 +14,7 @@ if ($conn->connect_error) {
 } 
 $data = json_decode(file_get_contents("php://input"),true);
 $id=$data["id"];
+$id =preg_replace('/[^0-9]/', '', $id);
 
 $query = "DELETE FROM review
     WHERE id='".$id."';

@@ -2,7 +2,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: http://localhost:3000");
-include 'resources/properties.php';
+include '../resources/properties.php';
 
 $response=array();
 
@@ -20,15 +20,23 @@ $sql = "SELECT p.id, title, writer, writtenDate, views, count(r.id) as reviewCou
         ORDER BY id DESC;";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $response[]=$row;
+if($conn){
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $response[]=$row;
+        }
+    } else {
+        echo "";
     }
-} else {
-    echo "";
+    echo json_encode($response);
 }
-
-echo json_encode($response);
+else{
+    $response=array(
+        'status' => 405,
+        'status_message' =>"Not Acceptable",
+    );
+    echo json_encode($response);
+}
 $conn->close();
 ?> 
