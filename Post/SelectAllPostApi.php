@@ -18,25 +18,20 @@ $sql = "SELECT p.id, title, writer, writtenDate, views, count(r.id) as reviewCou
          ON p.id=r.postId 
          GROUP BY p.id  
         ORDER BY id DESC;";
-$result = $conn->query($sql);
 
-if($conn){
+$result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
             $response[]=$row;
         }
     } else {
-        echo "";
+        $response=array(
+            'status' => 204,
+            'status_message' =>"No data",
+        );
     }
     echo json_encode($response);
-}
-else{
-    $response=array(
-        'status' => 405,
-        'status_message' =>"Not Acceptable",
-    );
-    echo json_encode($response);
-}
+
 $conn->close();
 ?> 

@@ -42,7 +42,6 @@ $query = "UPDATE post SET title= '".$title."', writer= '".$writer."', context= '
         $response=array(
             'status' => 500,
             'status_message' =>'Update Failed.',
-            'error'=> mysqli_query($conn, $query)->error_log
         );
     }
 

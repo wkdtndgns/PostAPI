@@ -25,6 +25,7 @@ $id =preg_replace('/[^0-9]/', '', $id);
     $views=0;
 
     if ($result->num_rows > 0) {
+
         // output data of each row
         while($row = $result->fetch_assoc()) {
             $response[]=$row;
@@ -34,12 +35,12 @@ $id =preg_replace('/[^0-9]/', '', $id);
 
         $sql = "UPDATE post SET views= '".$views."'
             WHERE id='".$id."'
-        ";
+        ";        
         $conn->query($sql);
     } 
     else {
         $response=array(
-            'status' => 500,
+            'status' => 204,
             'status_message' => "Find Failed.",
         );
     }

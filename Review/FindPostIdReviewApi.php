@@ -24,7 +24,10 @@ if ($result->num_rows > 0) {
         $response[]=$row;
     }
 } else {
-    echo "";
+    $response=array(
+        'status' => 204,
+        'status_message' => "Find Failed.",
+    );
 }
 
 echo json_encode($response);
