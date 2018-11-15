@@ -7,3 +7,6 @@ DB 스키마
 <br/><br/>
 <https://blog.naver.com/wkdtndgns>   작업 일지 바로가기 <br/><br/>
 <https://github.com/wkdtndgns/bbs> 프론트 엔드 바로가기 
+
+<br/>
+IE 브라우저는 지원하지 않습니다.
